@@ -32,7 +32,9 @@ app.get("/api/notes", function(req, res) {
 app.post("/api/notes"), function(req, res) {
     let notes = req.body;
     notes.id = db.length;
-
+    
+    console.log(notes)
+    
     db.push(notes);
 
 }
