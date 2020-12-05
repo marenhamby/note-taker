@@ -5,6 +5,8 @@ var fs = require("fs");
 var db = require(".db/db.json");
 
 //set up Express
+var app = express();
+var PORT = process.env.PORT || 3000;
 
 //set up Express to handle data parsing
 
