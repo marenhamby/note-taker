@@ -8,7 +8,10 @@ var db = require("./db/db.json");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-//set up Express to handle data parsing
+//set up Express to parse the data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
 
 //send user to the notes page
 
