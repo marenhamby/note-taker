@@ -23,6 +23,11 @@ app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
+//get the information from the db.json
+app.get("/api/notes", function(req, res) {
+    res.json(db);
+});
+
 //take user input for notes and put it into the database
 
 //delete note
