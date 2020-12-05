@@ -37,6 +37,14 @@ app.post("/api/notes"), function(req, res) {
     
     db.push(notes);
 
+    //create file with note informatin
+    fs.writeFile("./db/db.json", JSON.stringify(db), function (err) {
+        if (err) {
+            console.log("error");
+        } else{
+            console.log("success")
+        }        
+    });
 }
 
 
