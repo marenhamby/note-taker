@@ -18,14 +18,14 @@ app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-//default path for the homepage
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-});
-
 //get the information from the db.json
 app.get("/api/notes", function(req, res) {
     res.json(db);
+});
+
+//default path for the homepage
+app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 //take user input for notes and put it into the database
