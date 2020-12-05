@@ -14,6 +14,9 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //send user to the notes page
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
 
 //take user input for notes and put it into the database
 
