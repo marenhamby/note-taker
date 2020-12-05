@@ -49,8 +49,18 @@ app.post("/api/notes"), function(req, res) {
 
 
 //delete note
+app.delete('/api/notes/:id', function(req, res){
+    const noteDel = req.params.id;
+
+    for (var i=0; i<db.length; i++) {
+        if (noteDel === notes.id) {
+            db.splice([i], 1);
+            res.json(db);
+        };
+    };
+});
 
 //start server listening
 app.listen(PORT, function(){
     console.log("App listening on PORT" + PORT);
-})
+});
