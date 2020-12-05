@@ -54,12 +54,7 @@ app.delete('/api/notes/:id', function(req, res){
 
     const deleteNote = db.findIndex(element => parseInt(element.id) ===parseInt(noteDel));
     db.splice(deleteNote, 1);
-    // for (var i=0; i<db.length; i++) {
-    //     if (noteDel === notes.id) {
-    //         db.splice([i], 1);
-    //         res.json(db);
-    //     };
-    // };
+
     //rewrite file after item is deleted
     fs.writeFile("./db/db.json", JSON.stringify(db), function (err) {
         if (err) {
