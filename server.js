@@ -45,10 +45,12 @@ app.post("/api/notes"), function(req, res) {
             console.log("success")
         }        
     });
-}
+};
 
 
 //delete note
 
 //start server listening
-
+app.listen(PORT, function(){
+    console.log("App listening on PORT" + PORT);
+})
