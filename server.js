@@ -29,6 +29,14 @@ app.get("/api/notes", function(req, res) {
 });
 
 //take user input for notes and put it into the database
+app.post("/api/notes"), function(req, res) {
+    let notes = req.body;
+    notes.id = db.length;
+
+    db.push(notes);
+
+}
+
 
 //delete note
 
