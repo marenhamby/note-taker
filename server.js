@@ -30,8 +30,11 @@ app.get("/api/notes", function(req, res) {
 
 //take user input for notes and put it into the database
 app.post("/api/notes"), function(req, res) {
-    let notes = req.body;
-    notes.id = db.length;
+    const notes = {
+        id: db.length,
+        title: req.body.title,
+        text: req.body.text
+    }
     
     console.log(notes)
     
