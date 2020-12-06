@@ -14,4 +14,8 @@ This was my first project which is hosted on Heroku.
 This application requires a server connection. 
 
 ## Screenshots
+Here is a screenshot of the homepage of the application and of the page where notes are entered.
 
+![note homepage](./assets/Note-Taker_homepage.PNG)
+
+![new note](./assets/Note-Taker_new-note.PNG)
