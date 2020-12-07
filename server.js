@@ -14,58 +14,66 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //send user to the notes page
-app.get("/notes", function(req, res) {
+app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
 //get the information from the db.json
-app.get("/api/notes", function(req, res) {
+app.get("/api/notes", function (req, res) {
     res.json(db);
 });
 
-//default path for the homepage
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-});
 
 //take user input for notes and put it into the database
-app.post("/api/notes"), function(req, res) {
+app.post("/api/notes", function (req, res) {
+  
     let notes = req.body;
-    notes.id = (db.length).toString();
-    
-    console.log(notes);
-    
+    if (db.length) {
+        notes.id = db[db.length - 1].id + 1
+    } else {
+        notes.id = 1
+    };
+
+   
+
     db.push(notes);
 
     //create file with note informatin
     fs.writeFile("./db/db.json", JSON.stringify(db), function (err) {
         if (err) {
             console.log(err);
-        } else{
+            res.sendStatus(404);
+        } else {
             console.log("success")
-        }        
+            res.sendStatus(200);
+        }
     });
-};
+});
 
 
 //delete note
-app.delete('/api/notes/:id', function(req, res){
+app.delete('/api/notes/:id', function (req, res) {
     const noteDel = req.params.id;
 
-    const deleteNote = db.findIndex(element => parseInt(element.id) ===parseInt(noteDel));
+    const deleteNote = db.findIndex(element => parseInt(element.id) === parseInt(noteDel));
     db.splice(deleteNote, 1);
-
     //rewrite file after item is deleted
     fs.writeFile("./db/db.json", JSON.stringify(db), function (err) {
         if (err) {
             console.log(err);
-        } else{
+            res.sendStatus(404);
+        } else {
             console.log("success")
-        }        
+            res.sendStatus(200);
+        }
     });
 });
 
+//default path for the homepage
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
 //start server listening
-app.listen(PORT, function(){
+app.listen(PORT, function () {
     console.log("App listening on PORT" + PORT);
 });
